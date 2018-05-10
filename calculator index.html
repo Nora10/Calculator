@@ -1,0 +1,126 @@
+<!DOCTYPEhtml>
+<head>
+
+<title> Nora's interface </title>
+<link href="style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+<h1>Scientific Calculator</h1>
+	<div id="interface">
+		<form>
+			<input type='text' name='' id='screenDisplay' maxlength="10" disabled>
+			<br>
+				<input type='button' value='Cos' id='numericKeypad' onclick='cos()'>
+				
+				
+				<input type='button' value='+' id='numericKeypad' onclick='toScreen("+")'>
+				<input type='button' value='-' id='numericKeypad' onclick='toScreen("-")'>
+				<input type='button' value='*' id='numericKeypad' onclick='toScreen("*")'>
+                <input type='button' value='/' id='numericKeypad' onclick='toScreen("/")'>
+				<br>
+
+				<input type='button' value='Tan' id='numericKeypad' onclick='tan()'>
+				<input type='button' value='7' id='numericKeypad' onclick='toScreen("7")'>
+				<input type='button' value='8' id='numericKeypad' onclick='toScreen("8")'>
+				<input type='button' value='9' id='numericKeypad' onclick='toScreen("9")'>
+				<input type='button' value='C' id='numericKeypad' onclick='toScreen("c")'>
+				
+				<br>
+
+				<input type='button' value='Sin' id='numericKeypad' onclick='sin()'>
+				<input type='button' value='4' id='numericKeypad' onclick='toScreen("4")'>
+				<input type='button' value='5' id='numericKeypad' onclick='toScreen("5")'>
+				<input type='button' value='6' id='numericKeypad' onclick='toScreen("6")'>
+				<input type='button' value='CE' id='numericKeypad' onclick='Calculux()'>
+				<br>
+
+				<input type='button' value='sqrt' id='numericKeypad' onclick='sqrt()'>
+				<input type='button' value='1' id='numericKeypad' onclick='toScreen("1")'>
+				<input type='button' value='2' id='numericKeypad' onclick='toScreen("2")'>
+				<input type='button' value='3' id='numericKeypad' onclick='toScreen("3")'>
+				<input type='button' value='x^y' id='numericKeypad' onclick='toScreen("**")'>
+				<br>
+
+				<input type='button' value='x^2' id='numericKeypad' onclick='multiples()'>
+				<input type='button' value='0' id='numericKeypad' onclick='toScreen("0")'>
+				<input type='button' value='.' id='numericKeypad' onclick='toScreen(".")'>
+				<input type='button' value='=' id='Summation' onclick='answer()'>
+		</form>
+		
+	</div>
+<script>
+var space = document.getElementById('screenDisplay');
+
+	function toScreen(w){
+
+		var display = space.value.toString().split("");
+
+		if(space.value.length === 14){
+			space.value +='';
+		} else if(w ==='c'){
+			space.value = '';
+		 } else{
+			space.value += w;
+		}
+	}
+
+	function multiples(){
+		w = space.value;
+		w = eval(w * w);
+		space.value = w;
+	}
+
+	function answer(){
+		w = space.value;
+		var y;
+		try {
+			y = eval(w.replace(/\b0*((\d+\.\d+|\d+))\b/g, "$1"))
+			var result = y.toString().length;
+			if(result >= 14){
+				y = y.toPrecision(14);
+				space.value = y;
+			}
+			else{
+				space.value = y;
+			}
+		}
+		catch (e) {
+    		if (e instanceof SyntaxError) {
+    		space.value = "Syntax Error";
+    		}
+		}
+	}
+	function sin(){
+		w = space.value;
+		w = Math.sin(w);
+		space.value = w;
+		}
+	function Calculux(){
+		var step = space.value;
+		var fieldlength = num.length-1;
+		var newInput = step.substring(0, fieldlength);
+		space.value = newInput;
+	}
+
+	function cos(){
+		w = space.value;
+		w = Math.cos(w);
+		space.value = w;
+	}
+
+	function tan(){
+		w = space.value;
+		w = Math.tan(w);
+		space.value = w;
+	}
+	function sqrt(){
+		w = space.value;
+		w = Math.sqrt(w);
+		space.value = w;
+	}
+</script>
+	<footer>
+	<p style="color:#ffffff;">&copy; 2018  , Design By Nora Anazia</p>
+	</footer>
+</body>
+</html>
